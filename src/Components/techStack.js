@@ -13,7 +13,6 @@ class techStack extends Component {
             experience: "",
             project: ""
         };
-
     }
 
     validateForm() {
@@ -38,7 +37,7 @@ class techStack extends Component {
         }
         tech(user).then(res => {
             if (technologies && experience && project) {
-                // this.props.history.push('/Authhome')
+                // this.props.history.push('/')
             }
         })
     }
@@ -47,27 +46,27 @@ class techStack extends Component {
         return (
             <div className=" Employee ">
                 <form onSubmit={this.handleSubmit}>
-                    <FormGroup controlId="name" bsSize="large">
+                    <FormGroup controlId="technologies" bsSize="large">
                         <b>Technologies</b>
                         <FormControl
                             autoFocus
                             type="text"
-                            value={this.state.name}
+                            value={this.state.technologies}
                             onChange={this.handleChange}
                         />
                     </FormGroup>
-                    <FormGroup controlId="place" bsSize="large">
+                    <FormGroup controlId="experience" bsSize="large">
                         <b>Experience</b>
                         <FormControl
-                            value={this.state.place}
+                            value={this.state.experience}
                             onChange={this.handleChange}
                             type="text"
                         />
                     </FormGroup>
-                    <FormGroup controlId="place" bsSize="large">
+                    <FormGroup controlId="project" bsSize="large">
                         <b>Project</b>
                         <FormControl
-                            value={this.state.place}
+                            value={this.state.project}
                             onChange={this.handleChange}
                             type="text"
                         />
@@ -79,7 +78,7 @@ class techStack extends Component {
                         type="submit"
                     >
                         Submit
-          </Button>
+                    </Button>
                 </form>
             </div>
         );
