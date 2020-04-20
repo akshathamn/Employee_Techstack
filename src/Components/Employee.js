@@ -11,12 +11,13 @@ class Employee extends Component {
     this.state = {
       name: "",
       place: "",
-      designation: ""
+      designation: "",
+      technologies: ""
     };
   }
 
   validateForm() {
-    return this.state.name.length > 0 && this.state.place.length > 0 && this.state.designation.length > 0;
+    return this.state.name.length > 0 && this.state.place.length > 0 && this.state.designation.length > 0 && this.state.technologies.length > 0;
   }
 
   handleChange = event => {
@@ -27,16 +28,17 @@ class Employee extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    const { name, place, designation } = this.state;
+    const { name, place, designation, technologies } = this.state;
     this.setState({ submitted: true });
 
     const user = {
       name: this.state.name,
       place: this.state.place,
-      designation: this.state.designation
+      designation: this.state.designation,
+      technologies: this.state.technologies,
     }
     employ(user).then(res => {
-      if (name && place && designation) {
+      if (name && place && designation && technologies) {
         this.props.history.push('/techStack')
       }
     })
@@ -71,6 +73,14 @@ class Employee extends Component {
               type="text"
             />
           </FormGroup>
+          <FormGroup controlId="technologies" bsSize="large">
+            <b>Technologies</b>
+            <FormControl
+              value={this.state.technologies}
+              onChange={this.handleChange}
+              type="text"
+            />
+          </FormGroup>
           <Button
             block
             bsSize="large"
@@ -88,7 +98,8 @@ const mapStateToProps = (state) => {
   const { name } = state.employeereducer;
   const { place } = state.employeereducer;
   const { designation } = state.employeereducer;
-  return { name, place, designation };
+  const { technologies } = state.employeereducer;
+  return { name, place, designation, technologies };
 };
 export default connect(mapStateToProps, { employee })(Employee);
 

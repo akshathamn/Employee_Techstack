@@ -3,7 +3,8 @@ import * as ActionTypes from '../Actions/Type';
 const initialState = {
     name: '',
     place: '',
-    designation: ''
+    designation: '',
+    technologies: ''
 };
 export default (state = initialState, action) => {
     switch (action.type) {

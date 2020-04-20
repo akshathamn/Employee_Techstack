@@ -2,13 +2,14 @@ import axios from 'axios'
 
 export const employ = user => {
     return axios
-        .post('employee', {
+        .post('employees', {
             name: user.name,
             place: user.place,
-            designation: user.designation
+            designation: user.designation,
+            technologies: user.technologies
         })
         .then(res => {
-            console.log('employee')
+            console.log('employees')
             localStorage.setItem('usertoken', res.data)
             return res.data
         })
@@ -19,13 +20,26 @@ export const employ = user => {
 
 export const tech = user => {
     return axios
-        .post('techstack', {
-            technologies: user.technologies,
+        .post('techstacks', {
             experience: user.experience,
+        })
+        .then(res => {
+            console.log('techstacks')
+            localStorage.setItem('usertoken', res.data)
+            return res.data
+        })
+        .catch(err => {
+            console.log(err)
+        })
+}
+
+export const projects = user => {
+    return axios
+        .post('project/:employee_id', {
             project: user.project
         })
         .then(res => {
-            console.log('techstack')
+            console.log('project/:employee_id')
             localStorage.setItem('usertoken', res.data)
             return res.data
         })
